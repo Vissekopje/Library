@@ -37,7 +37,7 @@ function displayBooks(){
     let indexNumber = 0
     myLibrary.forEach((book) => {
         const bookCard = document.createElement("div")
-        bookCard.classList.add("bookCard")
+        bookCard.classList.add("bookcard")
         bookCard.dataset.index = indexNumber
         const nameBook = document.createElement("div")
         const nameAuthor = document.createElement("div")
@@ -52,25 +52,24 @@ function displayBooks(){
         bookReadButton.setAttribute("type", "checkbox")
         bookReadButton.classList.add("readbutton")
         bookReadButton.dataset.index = indexNumber
+        const bookReadButtonContainer = document.createElement("div")
+        bookReadButtonContainer.classList.add("read-container")
+       
 
-        nameBook.textContent= book.name
-        nameAuthor.textContent= book.author
-        pagesBook.textContent= book.pages
-        if(book.read == true){
-            readBook.textContent = "Read"
-        }
-        else {
-            readBook.textContent = "Not read"
-        }
+        nameBook.textContent= `Name: ${book.name}`
+        nameAuthor.textContent= `Author: ${book.author}`
+        pagesBook.textContent= `Pages: ${book.pages}`
+        readBook.textContent = "Read:"
         bookdeleteButton.textContent = "Remove book"
         bookReadButton.checked = book.read
 
         bookCard.appendChild(nameBook)
         bookCard.appendChild(nameAuthor)
         bookCard.appendChild(pagesBook)
-        bookCard.appendChild(readBook)
+        bookReadButtonContainer.appendChild(readBook)
+        bookReadButtonContainer.appendChild(bookReadButton)
+        bookCard.appendChild(bookReadButtonContainer)
         bookCard.appendChild(bookdeleteButton)
-        bookCard.appendChild(bookReadButton)
         bookContainer.appendChild(bookCard)
 
         indexNumber++
