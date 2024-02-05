@@ -79,6 +79,8 @@ function displayBooks(){
     )
     document.querySelectorAll(".deletebutton").forEach(button =>
         button.addEventListener("click", () => deleteBook(button.dataset.index)))
+    document.querySelectorAll(".readbutton").forEach(button =>
+            button.addEventListener("click", () => readBook(button.dataset.index)))
 }
 
 
@@ -86,4 +88,17 @@ function displayBooks(){
 function deleteBook(index){
    myLibrary.splice(index, 1)
    displayBooks()
+}
+
+function readBook(index){
+    const book = myLibrary[index]
+    if(book.read == true){
+        readBook.textContent = "Not read"
+        book.read = false
+    }
+    else {
+        readBook.textContent = "Read"
+        book.read = true
+    }
+    displayBooks()
 }
