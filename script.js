@@ -1,15 +1,31 @@
 
-const myLibrary = [{name: "Kareltje de pap", author: "Geranium Jopke", pages: "93", read: "true"}, {name: "Kareltje de pap", author: "Geranium Jopke", pages: "95", read: "true"}];
+const myLibrary = [{name: "Koning van Katoren", author: "Jan Terlouw", pages: "210", read: "true"}];
 
-const bookCards = document.querySelector
 const bookContainer = document.querySelector(".bookcontainer")
 const bookName = document.getElementById("Name")
 const bookAuthor = document.getElementById("Author")
 const bookPages = document.getElementById("Pages")
 const bookRead = document.getElementById("Read")
 const submitButton = document.querySelector(".submit-book")
+const newBookButton = document.querySelector(".new-book")
+const bookFormMain = document.querySelector(".book-form-main")
+const bookForm = document.querySelector(".bookform")
+const cancelButton = document.querySelector(".cancel")
 
-submitButton.addEventListener("click", () => addBookToLibrary())
+cancelButton.addEventListener("click", (event) => cancelForm(event))
+submitButton.addEventListener("click", (event) => submitForm(event))
+
+newBookButton.addEventListener("click", () => showForm())
+function showForm(){
+    if(!bookForm.classList.contains("visible")){
+    bookForm.classList.add("visible")
+    bookFormMain.classList.add("visible")
+    }
+    else {
+        bookForm.classList.remove("visible")
+        bookFormMain.classList.remove("visible")
+    }
+}
 
 function Book(name, author, pages, read) {
     this.name = name
@@ -25,9 +41,7 @@ function addBookToLibrary() {
     const inputBookRead = bookRead.checked
     const newBook = new Book(inputBookName, inputBookAuthor, inputBookPages, inputBookRead);
     myLibrary.push(newBook)
-    console.log(inputBookRead)
     return displayBooks()
-    
 }
 
 function displayBooks(){
@@ -73,13 +87,14 @@ function displayBooks(){
         bookContainer.appendChild(bookCard)
 
         indexNumber++
-
     }
     )
     document.querySelectorAll(".deletebutton").forEach(button =>
         button.addEventListener("click", () => deleteBook(button.dataset.index)))
     document.querySelectorAll(".readbutton").forEach(button =>
             button.addEventListener("click", () => readBook(button.dataset.index)))
+    bookForm.classList.remove("visible")
+    bookFormMain.classList.remove("visible")
 }
 
 
@@ -100,4 +115,22 @@ function readBook(index){
         book.read = true
     }
     displayBooks()
+}
+
+function submitForm(event){
+    let isFormValid = document.querySelector(".bookform").checkValidity()
+    if(!isFormValid){
+        document.querySelector(".bookform").reportValidity()
+    }
+    else{
+    event.preventDefault();
+    addBookToLibrary()
+    bookForm.reset()
+    }
+}
+
+function cancelForm(event){
+    event.preventDefault();
+    displayBooks()
+    bookForm.reset()
 }

@@ -7,20 +7,34 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="header"></div>
-    <div class="main">
-       
-        <form id="bookForm">
+    <header>
+        <div class="leftheader">
+        <a href="#">
+            <img src="images/chess-queen.svg" alt="Queen Icon" height="35">
+            <h2>Library</h2>
+        </a>
+        </div>
+        <div class="rightheader">
+        <div class="new-book">
+            <a href="#">
+                <img src="./images/book-plus.svg" alt="Add book Icon" height="35">
+                Add New Book
+            </a>
+        <div>
+    </header>
+    <div class="book-form-main">
+        <div class="bookwrapper">
+        <form class="bookform">
             <div class="form-row">
-                <label for="Name">Book Name</label>
+                <label for="Name">Book Name:</label>
                 <input type="text" id="Name" name="Name" required>
             </div>
             <div class="form-row">
-                <label for="Author">Author</label>
+                <label for="Author">Author:</label>
                 <input type="text" id="Author" name="Author" required>
             </div>
             <div class="form-row">
-                <label for="Pages">Pages</label>
+                <label for="Pages">Number of Pages:</label>
                 <input type="number" id="Pages" name="Pages" required>
             </div>
             <div class="form-row">
@@ -29,9 +43,11 @@
                 <span>Read</span>
             </label>
             </div>
+            <div class="form-row" id="buttons">
+                <button type="submit" class="submit-book">Submit</button>
+                <button class="cancel">Cancel</button>
+            </div>
         </form>
-        <div class="form-row">
-            <button class="submit-book">Submit Book</button>
         </div>
     </div>
     <div class="bookcontainer"></div>
