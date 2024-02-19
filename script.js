@@ -26,23 +26,25 @@ function showForm(){
         bookFormMain.classList.remove("visible")
     }
 }
-
-function Book(name, author, pages, read) {
-    this.name = name
-    this.author = author
-    this.pages = pages
-    this.read = read
+class Book {
+    constructor(name, author, pages, read){
+        this.name = name
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
+    static addBookToLibrary() {
+        const inputBookName = bookName.value
+        const inputBookAuthor = bookAuthor.value
+        const inputBookPages = bookPages.value
+        const inputBookRead = bookRead.checked
+        const newBook = new Book(inputBookName, inputBookAuthor, inputBookPages, inputBookRead);
+        myLibrary.push(newBook)
+        return displayBooks()
+    }
+    
 }
 
-function addBookToLibrary() {
-    const inputBookName = bookName.value
-    const inputBookAuthor = bookAuthor.value
-    const inputBookPages = bookPages.value
-    const inputBookRead = bookRead.checked
-    const newBook = new Book(inputBookName, inputBookAuthor, inputBookPages, inputBookRead);
-    myLibrary.push(newBook)
-    return displayBooks()
-}
 
 function displayBooks(){
     while (bookContainer.firstChild){
@@ -124,7 +126,7 @@ function submitForm(event){
     }
     else{
     event.preventDefault();
-    addBookToLibrary()
+    Book.addBookToLibrary()
     bookForm.reset()
     }
 }
